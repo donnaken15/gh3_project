@@ -1,0 +1,40 @@
+#!/bin/zsh
+
+# no args
+[ $# -eq 0 ] && { echo "enter a path to decompile"; exit 1; }
+# non existent dir arg
+[ ! -d "$1" ] && { echo "invalid path"; exit 1; }
+indir=$1; find=/usr/bin/find
+outdir="${2:-decomp}/"
+[ ! "$(dirname "$0")" = "." ] && bin="$(realpath "$0")/" || bin="$(which "$0")/"
+bin=$(dirname "$bin"); wbin=$(cygpath -w "$bin"); NL=$'\n'; nul=/dev/null
+rm "$outdir" -rf
+
+rm __why __why2 2> /dev/null
+touch __why __why2
+
+t=10
+(cd "$indir" && $find * -type f -name "*.qb" -or -name "*.qb.xen") | while read -r f; do
+	#((i=i%t)); ((i++==0)) && {
+		while : ; do
+			[ $(($(wc -l <__why2)-$(wc -l <__why))) -lt $t ] && break
+			sleep 0.05
+		done
+	{
+		echo >> __why2
+		mkdir -p "${outdir}$(dirname $f)"
+		out="$outdir${f%.qb*}.q"
+		echo "Compiling $out..."
+		node "$wbin/GHSDK/NodeQBC/QBC.js" d "$indir/$f" -o "${out}_tmp"
+		[ -s "${out}_tmp" ] &&
+			{ unexpand -t 4 "${out}_tmp" | sed 's/[ \t]*$//' > "$out" && rm -f "${out}_tmp" } ||
+			touch "$out"
+		#mv "${out}_tmp" "$out" -f
+		#wrote it like this thinking i might overwrite it as it's still the input
+		# |:|
+		echo >> __why
+	} &
+done
+
+wait
+rm __why __why2 2> /dev/null

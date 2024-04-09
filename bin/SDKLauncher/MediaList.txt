@@ -1,0 +1,157 @@
+Media
+{
+	Images
+	{
+		"0"
+		{
+			index 0
+			image icon_document
+		}
+		"1"
+		{
+			index 1
+			image icon_soft
+		}
+		"3"
+		{
+			index 3
+			image icon_weblink
+		}
+		"4"
+		{
+			index 4
+			image icon_create
+		}
+		"5"
+		{
+			index 5
+			image icon_refresh
+		}
+		"6"
+		{
+			index 6
+			image icon_reset
+		}
+		"7"
+		{
+			index 7
+			image icon_folder
+		}
+		"8"
+		{
+			index 8
+			image icon_files
+		}
+		"9"
+		{
+			index 9
+			image icon_gnote
+		}
+		"10"
+		{
+			index 10
+			image icon_leff
+		}
+		"11"
+		{
+			index 11
+			image icon_sp2pu
+		}
+		"12"
+		{
+			index 12
+			image icon_qb
+		}
+		"13"
+		{
+			index 13
+			image icon_ida
+		}
+		"14"
+		{
+			index 14
+			image icon_skull
+		}
+		"15"
+		{
+			index 15
+			image icon_sdk
+		}
+	}
+
+	Sections
+	{
+		"1"
+		{
+			id	1
+			Name "Utilities"
+
+			ghsdk
+			{
+				Title		"Guitar Hero SDK"
+				ShellExecute	"ghsdk.bat"
+				Image		15
+			}
+			build
+			{
+				Title	"Build Project"
+				ShellExecute	"build.bat"
+				Image	4
+			}
+			buildrun
+			{
+				Title	"Build Project and Run"
+				ShellExecute	"build_test.bat"
+				Image	4
+			}
+			qbkey
+			{
+				Title	"QbKey / CRC32 Calculator"
+				ShellExecute	"https://ghwt.de/tools/qbkey"
+				Image	12
+			}
+			qbdb
+			{
+				Title	"Reverse Key Search"
+				ShellExecute	"https://ghwt.de/tools/qbdb"
+				Image	12
+			}
+		}
+		"2"
+		{
+			id	2
+			Name "Assets"
+
+			qb
+			{
+				Title	"QScript Code"
+				ShellExecute	"..\\src\\qb\\scripts"
+				Image	12
+			}
+			txb
+			{
+				Title	"buildtex"
+				ShellExecute	"..\\materialsrc"
+				Image	9
+			}
+		}
+		"3"
+		{
+			id	3
+			Name "Resources"
+
+			nxd2
+			{
+				Title	"QScript Documentation"
+				ShellExecute	"https://donnaken15.com/FastGH3/docs/NxDocs2/Q"
+				Image	1
+			}
+			ghsdkd
+			{
+				Title	"Guitar Hero SDK Wiki"
+				ShellExecute	"https://ghwt.de/wiki/#/sdk/"
+				Image	1
+			}
+		}
+	}
+}
